@@ -1,0 +1,177 @@
+﻿@model IEnumerable<WarehouseEntry.Business.Models.EntryCompleteModel>
+<div>
+    <table class="table table-bordered table-condensed table-hover">
+        <tr>
+            <th class="model-id-container">
+                @Html.DisplayNameFor(model => model.ModelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuiteCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImgNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sequence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StomachWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WingWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PieceCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th class="date-cell">
+                @Html.DisplayNameFor(model => model.AssemblageDate)
+            </th>
+            <th class="date-cell">
+                @Html.DisplayNameFor(model => model.SolderingDate)
+            </th>
+            <th class="date-cell">
+                @Html.DisplayNameFor(model => model.CorrectionDate)
+            </th>
+            <th class="date-cell">
+                @Html.DisplayNameFor(model => model.InspectionDate)
+            </th>
+            <th class="date-cell">
+                @Html.DisplayNameFor(model => model.CompletionDate)
+            </th>
+            <th class="date-cell">
+                @Html.DisplayNameFor(model => model.DespatchDate)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="model-id-container">
+                    @Html.HiddenFor(m => item.ModelId)
+                    @Html.ValidationMessageFor(m => item.ModelId)
+                </td>
+                <td>
+                    @Html.EditorFor(m => item.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.ProjectName)
+                </td>
+                <td>
+                    @Html.EditorFor(m => item.ProjectNum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.ProjectNum)
+                </td>
+                <td>
+                    @Html.EditorFor(m => item.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.ProductName)
+                </td>
+                <td class="int">
+                    @Html.EditorFor(m => item.SuiteCount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.SuiteCount)
+                </td>
+                <td>
+                    @Html.EditorFor(m => item.ProductImgNum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.ProductImgNum)
+                </td>
+                <td>
+                    @Html.EditorFor(m => item.Sequence, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.Sequence)
+                </td>
+                <td>
+                    @Html.EditorFor(m => item.ImgNum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.ImgNum)
+                </td>
+                <td class="float">
+                    @Html.EditorFor(m => item.Height, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.Height)
+                </td>
+                <td class="float">
+                    @Html.EditorFor(m => item.Width, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.Width)
+                </td>
+                <td class="float">
+                    @Html.EditorFor(m => item.StomachWeight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.StomachWeight)
+                </td>
+                <td class="float">
+                    @Html.EditorFor(m => item.WingWeight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.WingWeight)
+                </td>
+                <td class="float">
+                    @Html.EditorFor(m => item.Length, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.Length)
+                </td>
+                <td class="int">
+                    @Html.EditorFor(m => item.PieceCount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.PieceCount)
+                </td>
+                <td class="float">
+                    @Html.EditorFor(m => item.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => item.Weight)
+                </td>
+                <td class="date-cell">
+                    <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                        @Html.EditorFor(m => item.AssemblageDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => item.AssemblageDate)
+                </td>
+                <td class="date-cell">
+                    <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                        @Html.EditorFor(m => item.SolderingDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => item.SolderingDate)
+                </td>
+                <td class="date-cell">
+                    <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                        @Html.EditorFor(m => item.CorrectionDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => item.CorrectionDate)
+                </td>
+                <td class="date-cell">
+                    <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                        @Html.EditorFor(m => item.InspectionDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => item.InspectionDate)
+                </td>
+                <td class="date-cell completion-date">
+                    <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                        @Html.EditorFor(m => item.CompletionDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => item.CompletionDate)
+                </td>
+                <td class="date-cell despatch-date">
+                    <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                        @Html.EditorFor(m => item.DespatchDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    @Html.ValidationMessageFor(m => item.DespatchDate)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

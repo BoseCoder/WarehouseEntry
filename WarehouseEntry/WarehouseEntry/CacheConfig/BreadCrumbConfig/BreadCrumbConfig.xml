@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteMenuRoot text="HomeIndex" url="~/" isAction="true" cssClass="icon-home" visible="true">
+  <SubMenus>
+    <SiteMenuModel text="UserControllerUserIndex" url="~/User/UserIndex" isAction="true" cssClass="icon-user" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="UserControllerRightIndex" url="~/User/RightIndex" isAction="true" cssClass="icon-lock" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="UserControllerChangePassword" url="~/User/ChangePassword" isAction="true" cssClass="icon-key" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="EntryControllerCreateEntry" url="~/Entry/CreateEntry" isAction="true" cssClass="icon-truck" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="EntryControllerEditEntry" url="~/Entry/EditEntry" isAction="true" cssClass="icon-edit" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="EntryControllerCompleteEntry" url="~/Entry/CompleteEntry" isAction="true" cssClass="icon-truck" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="EntryControllerBatchCreateEntry" url="~/Entry/BatchCreateEntry" isAction="true" cssClass="icon-truck" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="EntryControllerBatchEditEntry" url="~/Entry/BatchEditEntry" isAction="true" cssClass="icon-edit" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="EntryControllerBatchCompleteEntry" url="~/Entry/BatchCompleteEntry" isAction="true" cssClass="icon-truck" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="ReportControllerWeightReport" url="~/Report/WeightReport" isAction="true" cssClass="icon-bar-chart" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="ReportControllerProductReport" url="~/Report/ProductReport" isAction="true" cssClass="icon-bar-chart" visible="true"></SiteMenuModel>
+  </SubMenus>
+</SiteMenuRoot>

@@ -1,0 +1,156 @@
+﻿@using Resources
+@model WarehouseEntry.Models.ViewRightIndexModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section DynamicHeader{
+    <link href='@Url.Content("~/Content/Custom/RoleBoard.css")' rel="stylesheet" />
+    <style type="text/css">
+        .menu-container {
+            margin-top: 10px;
+        }
+
+            .menu-container:first-child {
+                margin-top: 0;
+            }
+
+            .menu-container label {
+                font-size: 16px;
+            }
+
+        .menu-top {
+            background-color: #f5f5f5;
+            padding: 15px 0 5px 5px;
+        }
+
+        .menu-sub-container {
+            border: 2px solid #f5f5f5;
+            padding: 0 0 5px 15px;
+        }
+
+            .menu-sub-container > div {
+                float: left;
+                padding: 5px;
+                margin: 10px 100px 0 0;
+                -moz-min-width: 200px;
+                -ms-min-width: 200px;
+                -o-min-width: 200px;
+                -webkit-min-width: 200px;
+                min-width: 200px;
+            }
+
+                .menu-sub-container > div label {
+                    font-weight: normal;
+                }
+
+        .sub-menu-container > br {
+            clear: both;
+        }
+
+        #btnContainer {
+            margin-top: 10px;
+        }
+
+            #btnContainer input {
+                margin-top: 8px;
+            }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(":checkbox").iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+
+            function buildRightModel(rightItem) {
+                var cbox = rightItem.find(":checkbox");
+                return { MenuName: cbox.val().trim(), Enabled: cbox.is(":checked") };
+            }
+
+            $("#btnSave").click(function () {
+                var roleName = $("ul.role-list span").text().trim();
+                var rightModels = new Array();
+                var rightContainers = $(".menu-container");
+                for (var i = 0; i < rightContainers.length; i++) {
+                    var rightContainer = $(rightContainers[i]);
+                    var rightModel = buildRightModel(rightContainer.children(".menu-top"));
+
+                    var subItemContainers = rightContainer.children(".menu-sub-container").children("div");
+                    var subRightModels = new Array();
+                    for (var j = 0; j < subItemContainers.length; j++) {
+                        subRightModels[subRightModels.length] = buildRightModel($(subItemContainers[j]));
+                    }
+
+                    rightModel.subRightModels = subRightModels;
+                    rightModels[rightModels.length] = rightModel;
+                }
+                ajaxPost('@Url.Action("EnableRight")',
+                    { roleName: roleName, model: rightModels },
+                    undefined,
+                    function (data) {
+                        showSeccess(data);
+                    },
+                    function (data) {
+                        showFailed(data);
+                    });
+            });
+
+        });
+
+    </script>
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="role-board">
+                <div class="role-board-content">
+                    <div>
+                        <h3 class="icon-lock"><strong>@FunctionResource.UserControllerRightIndex</strong></h3>
+                        <hr />
+                        @Html.Partial("RightList", Model.Rights)
+                        <div id="btnContainer">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <input id="btnSave" type="button" class="button button-pill button-primary" value="@SiteCommonResource.TextSave" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="role-board-silder">
+                    <div class="role-container">
+                        <div class="role-list-title">
+                            <h3 class="icon-group">@SiteCommonResource.TextRoleList</h3>
+                        </div>
+                        <ul class="role-list">
+                            @foreach (var role in Model.Roles)
+                            {
+                                if (role.Selected)
+                                {
+                                <li class="active">
+                                    <span class="role-name">@role.DataModel.RoleName</span>
+                                </li>
+                                }
+                                else
+                                {
+                                <li>
+                                    @Html.ActionLink(role.DataModel.RoleName, "RightIndex", null,
+                                        new { roleName = role.DataModel.RoleName }, new { @class = "role-name" })
+                                </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

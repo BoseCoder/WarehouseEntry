@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WarehouseEntry.Business.Models.TaskModel>
+<div>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th class="task-handler-container" style="width: 140px; text-align: center;">
+                @Html.DisplayNameFor(model => model.CurrentHandler)
+            </th>
+            <th style="width: 160px; text-align: center;">
+                @Html.DisplayNameFor(model => model.SetupTime)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href='@Url.Content(item.TaskUrl)'>@item.TaskName</a>
+                </td>
+                <td class="task-handler-container" style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.CurrentHandler.DisplayName)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.SetupTime)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

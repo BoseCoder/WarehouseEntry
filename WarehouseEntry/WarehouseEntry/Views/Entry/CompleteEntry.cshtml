@@ -1,0 +1,309 @@
+﻿@using Resources
+@model WarehouseEntry.Models.ViewBaseModel<WarehouseEntry.Business.Models.EntryCompleteModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section DynamicHeader{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".date").datetimepicker({
+                language: 'zh-CN',
+                weekStart: 0,
+                autoclose: true,
+                todayBtn: true,
+                todayHighlight: true,
+                startView: "month",
+                minView: "month",
+                forceParse: true,
+                pickerPosition: "top-left"
+            });
+
+            $("#btnReject").click(function () {
+                ajaxPost('@Url.Action("CompleteEntry", new { id = ViewContext.RouteData.Values["id"], flowType = "Reject" })',
+                    $('form').serialize(), undefined,
+                    function (data) {
+                        showSeccess(data, '@Url.Action("Index", "Home")');
+                    },
+                    showFailed);
+            });
+
+            $("#btnComplete").click(function () {
+                var validateSpans = $(".field-validation-valid");
+                validateSpans.removeClass("icon-asterisk");
+                validateSpans.text("");
+                ajaxPost('@Url.Action("CompleteEntry", new { id = ViewContext.RouteData.Values["id"], flowType = "Complete" })',
+                    $('form').serialize(), undefined,
+                    function (data) {
+                        showSeccess(data, '@Url.Action("Index", "Home")');
+                    },
+                    function (data) {
+                        if (data.Msg != undefined && data.Msg != "") {
+                            showFailed(data);
+                        } else if (data.ObjectModel != undefined && data.ObjectModel.length > 0) {
+                            for (var i = 0; i < data.ObjectModel.length; i++) {
+                                var error = data.ObjectModel[i].error;
+                                if (error != undefined && error != "") {
+                                    var validateSpan = $('.field-validation-valid[data-valmsg-for="' + data.ObjectModel[i].key + '"]');
+                                    validateSpan.addClass("icon-asterisk");
+                                    validateSpan.text(error);
+                                }
+                            }
+                        }
+                    });
+            });
+
+        });
+
+    </script>
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-xs-offset-2 col-md-offset-2 col-xs-10 col-md-10">
+                    <h3><strong>@FunctionResource.EntryControllerCompleteEntry</strong></h3>
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.DataModel.ModelId)
+                        @Html.LabelFor(model => model.DataModel.ProjectName, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.ProjectName)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.ProjectNum, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.ProjectNum, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.ProjectNum)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.ProductName, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.ProductName)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.SuiteCount, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.SuiteCount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.SuiteCount)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.ProductImgNum, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.ProductImgNum, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.ProductImgNum)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.Sequence, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.Sequence, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.Sequence)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.ImgNum, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.ImgNum, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.ImgNum)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.Height, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.Height, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.Height)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.Width, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.Width, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.Width)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.StomachWeight, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.StomachWeight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.StomachWeight)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.WingWeight, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.WingWeight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.WingWeight)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.Length, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.Length, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.Length)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.PieceCount, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.PieceCount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.PieceCount)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.Weight, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.DataModel.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataModel.Weight)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.AssemblageDate, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                @Html.EditorFor(model => model.DataModel.AssemblageDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataModel.AssemblageDate)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.SolderingDate, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                @Html.EditorFor(model => model.DataModel.SolderingDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataModel.SolderingDate)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.CorrectionDate, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                @Html.EditorFor(model => model.DataModel.CorrectionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataModel.CorrectionDate)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.InspectionDate, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                @Html.EditorFor(model => model.DataModel.InspectionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataModel.InspectionDate)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.CompletionDate, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                @Html.EditorFor(model => model.DataModel.CompletionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataModel.CompletionDate)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataModel.DespatchDate, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                @Html.EditorFor(model => model.DataModel.DespatchDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataModel.DespatchDate)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-md-offset-2 col-xs-10 col-md-10">
+                            <input id="btnReject" type="button" value="@SiteCommonResource.TextReject" class="button button-pill button-primary" />
+                            <input id="btnComplete" type="button" value="@SiteCommonResource.TextComplete" class="button button-pill button-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

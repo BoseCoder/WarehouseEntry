@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WarehouseEntryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="WarehouseEntryModelStoreContainer">
+          <EntitySet Name="EntryRecord" EntityType="WarehouseEntryModel.Store.EntryRecord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FlowProcess" EntityType="WarehouseEntryModel.Store.FlowProcess" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FlowTask" EntityType="WarehouseEntryModel.Store.FlowTask" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecurityRole" EntityType="WarehouseEntryModel.Store.SecurityRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecurityUser" EntityType="WarehouseEntryModel.Store.SecurityUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SystemMenu" EntityType="WarehouseEntryModel.Store.SystemMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SystemRight" EntityType="WarehouseEntryModel.Store.SystemRight" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ENTRY_RELATIONS_CREATOR" Association="WarehouseEntryModel.Store.FK_ENTRY_RELATIONS_CREATOR">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="EntryRecord" EntitySet="EntryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTRY_RELATIONS_FLOW" Association="WarehouseEntryModel.Store.FK_ENTRY_RELATIONS_FLOW">
+            <End Role="FlowProcess" EntitySet="FlowProcess" />
+            <End Role="EntryRecord" EntitySet="EntryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTRY_RELATIONS_HANDLER" Association="WarehouseEntryModel.Store.FK_ENTRY_RELATIONS_HANDLER">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="EntryRecord" EntitySet="EntryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FLOW_RELATIONS_USER" Association="WarehouseEntryModel.Store.FK_FLOW_RELATIONS_USER">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="FlowProcess" EntitySet="FlowProcess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_RELATIONS_MENUPAR" Association="WarehouseEntryModel.Store.FK_MENU_RELATIONS_MENUPAR">
+            <End Role="SystemMenu" EntitySet="SystemMenu" />
+            <End Role="SystemMenu1" EntitySet="SystemMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_RELATIONS_MENU" Association="WarehouseEntryModel.Store.FK_RIGHT_RELATIONS_MENU">
+            <End Role="SystemMenu" EntitySet="SystemMenu" />
+            <End Role="SystemRight" EntitySet="SystemRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_RELATIONS_USER" Association="WarehouseEntryModel.Store.FK_RIGHT_RELATIONS_USER">
+            <End Role="SecurityRole" EntitySet="SecurityRole" />
+            <End Role="SystemRight" EntitySet="SystemRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASK_RELATIONS_APPROVER" Association="WarehouseEntryModel.Store.FK_TASK_RELATIONS_APPROVER">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="FlowTask" EntitySet="FlowTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASK_RELATIONS_PROCESS" Association="WarehouseEntryModel.Store.FK_TASK_RELATIONS_PROCESS">
+            <End Role="FlowProcess" EntitySet="FlowProcess" />
+            <End Role="FlowTask" EntitySet="FlowTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RELATIONS_ROLE" Association="WarehouseEntryModel.Store.FK_USER_RELATIONS_ROLE">
+            <End Role="SecurityRole" EntitySet="SecurityRole" />
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EntryRecord">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CreatorName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CompleterName" Type="varchar" MaxLength="50" />
+          <Property Name="ProcessID" Type="bigint" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+          <Property Name="CompletionTime" Type="datetime" />
+          <Property Name="ProjectName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProjectNum" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="SuiteCount" Type="int" Nullable="false" />
+          <Property Name="ProductImgNum" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Sequence" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ImgNum" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Height" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="Width" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="StomachWeight" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="WingWeight" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="Length" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="PieceCount" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="AssemblageDate" Type="datetime" Nullable="false" />
+          <Property Name="SolderingDate" Type="datetime" Nullable="false" />
+          <Property Name="CorrectionDate" Type="datetime" Nullable="false" />
+          <Property Name="InspectionDate" Type="datetime" Nullable="false" />
+          <Property Name="CompletionDate" Type="datetime" />
+          <Property Name="DespatchDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FlowProcess">
+          <Key>
+            <PropertyRef Name="ProcessID" />
+          </Key>
+          <Property Name="ProcessID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentHandler" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="SetupTime" Type="datetime" Nullable="false" />
+          <Property Name="CompleteTime" Type="datetime" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CurrentTaskSection" Type="varchar" MaxLength="100" />
+          <Property Name="CurrentHandleUrl" Type="varchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="FlowTask">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessID" Type="bigint" Nullable="false" />
+          <Property Name="HandlerName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SectionName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="HandleTime" Type="datetime" Nullable="false" />
+          <Property Name="HandleUrl" Type="varchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SecurityRole">
+          <Key>
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecurityUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemMenu">
+          <Key>
+            <PropertyRef Name="MenuName" />
+          </Key>
+          <Property Name="MenuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ParentMenuName" Type="varchar" MaxLength="100" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemRight">
+          <Key>
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RightID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="RoleName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ENTRY_RELATIONS_CREATOR">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.Store.SecurityUser" Multiplicity="1" />
+          <End Role="EntryRecord" Type="WarehouseEntryModel.Store.EntryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityUser">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="EntryRecord">
+              <PropertyRef Name="CreatorName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ENTRY_RELATIONS_FLOW">
+          <End Role="FlowProcess" Type="WarehouseEntryModel.Store.FlowProcess" Multiplicity="1" />
+          <End Role="EntryRecord" Type="WarehouseEntryModel.Store.EntryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlowProcess">
+              <PropertyRef Name="ProcessID" />
+            </Principal>
+            <Dependent Role="EntryRecord">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ENTRY_RELATIONS_HANDLER">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.Store.SecurityUser" Multiplicity="0..1" />
+          <End Role="EntryRecord" Type="WarehouseEntryModel.Store.EntryRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityUser">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="EntryRecord">
+              <PropertyRef Name="CompleterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FLOW_RELATIONS_USER">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.Store.SecurityUser" Multiplicity="0..1" />
+          <End Role="FlowProcess" Type="WarehouseEntryModel.Store.FlowProcess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityUser">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="FlowProcess">
+              <PropertyRef Name="CurrentHandler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_RELATIONS_MENUPAR">
+          <End Role="SystemMenu" Type="WarehouseEntryModel.Store.SystemMenu" Multiplicity="0..1" />
+          <End Role="SystemMenu1" Type="WarehouseEntryModel.Store.SystemMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemMenu">
+              <PropertyRef Name="MenuName" />
+            </Principal>
+            <Dependent Role="SystemMenu1">
+              <PropertyRef Name="ParentMenuName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_RELATIONS_MENU">
+          <End Role="SystemMenu" Type="WarehouseEntryModel.Store.SystemMenu" Multiplicity="1" />
+          <End Role="SystemRight" Type="WarehouseEntryModel.Store.SystemRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemMenu">
+              <PropertyRef Name="MenuName" />
+            </Principal>
+            <Dependent Role="SystemRight">
+              <PropertyRef Name="MenuName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIGHT_RELATIONS_USER">
+          <End Role="SecurityRole" Type="WarehouseEntryModel.Store.SecurityRole" Multiplicity="1" />
+          <End Role="SystemRight" Type="WarehouseEntryModel.Store.SystemRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityRole">
+              <PropertyRef Name="RoleName" />
+            </Principal>
+            <Dependent Role="SystemRight">
+              <PropertyRef Name="RoleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASK_RELATIONS_APPROVER">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.Store.SecurityUser" Multiplicity="1" />
+          <End Role="FlowTask" Type="WarehouseEntryModel.Store.FlowTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityUser">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="FlowTask">
+              <PropertyRef Name="HandlerName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASK_RELATIONS_PROCESS">
+          <End Role="FlowProcess" Type="WarehouseEntryModel.Store.FlowProcess" Multiplicity="1" />
+          <End Role="FlowTask" Type="WarehouseEntryModel.Store.FlowTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlowProcess">
+              <PropertyRef Name="ProcessID" />
+            </Principal>
+            <Dependent Role="FlowTask">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RELATIONS_ROLE">
+          <End Role="SecurityRole" Type="WarehouseEntryModel.Store.SecurityRole" Multiplicity="0..1" />
+          <End Role="SecurityUser" Type="WarehouseEntryModel.Store.SecurityUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityRole">
+              <PropertyRef Name="RoleName" />
+            </Principal>
+            <Dependent Role="SecurityUser">
+              <PropertyRef Name="RoleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WarehouseEntryModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WarehouseEntryDbContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="EntryRecord" EntityType="WarehouseEntryModel.EntryRecord" />
+          <EntitySet Name="FlowProcess" EntityType="WarehouseEntryModel.FlowProcess" />
+          <EntitySet Name="FlowTask" EntityType="WarehouseEntryModel.FlowTask" />
+          <EntitySet Name="SecurityRole" EntityType="WarehouseEntryModel.SecurityRole" />
+          <EntitySet Name="SecurityUser" EntityType="WarehouseEntryModel.SecurityUser" />
+          <EntitySet Name="SystemMenu" EntityType="WarehouseEntryModel.SystemMenu" />
+          <EntitySet Name="SystemRight" EntityType="WarehouseEntryModel.SystemRight" />
+          <AssociationSet Name="FK_ENTRY_RELATIONS_CREATOR" Association="WarehouseEntryModel.FK_ENTRY_RELATIONS_CREATOR">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="EntryRecord" EntitySet="EntryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTRY_RELATIONS_FLOW" Association="WarehouseEntryModel.FK_ENTRY_RELATIONS_FLOW">
+            <End Role="FlowProcess" EntitySet="FlowProcess" />
+            <End Role="EntryRecord" EntitySet="EntryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTRY_RELATIONS_HANDLER" Association="WarehouseEntryModel.FK_ENTRY_RELATIONS_HANDLER">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="EntryRecord" EntitySet="EntryRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FLOW_RELATIONS_USER" Association="WarehouseEntryModel.FK_FLOW_RELATIONS_USER">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="FlowProcess" EntitySet="FlowProcess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASK_RELATIONS_PROCESS" Association="WarehouseEntryModel.FK_TASK_RELATIONS_PROCESS">
+            <End Role="FlowProcess" EntitySet="FlowProcess" />
+            <End Role="FlowTask" EntitySet="FlowTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASK_RELATIONS_APPROVER" Association="WarehouseEntryModel.FK_TASK_RELATIONS_APPROVER">
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+            <End Role="FlowTask" EntitySet="FlowTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_RELATIONS_USER" Association="WarehouseEntryModel.FK_RIGHT_RELATIONS_USER">
+            <End Role="SecurityRole" EntitySet="SecurityRole" />
+            <End Role="SystemRight" EntitySet="SystemRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RELATIONS_ROLE" Association="WarehouseEntryModel.FK_USER_RELATIONS_ROLE">
+            <End Role="SecurityRole" EntitySet="SecurityRole" />
+            <End Role="SecurityUser" EntitySet="SecurityUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_RELATIONS_MENUPAR" Association="WarehouseEntryModel.FK_MENU_RELATIONS_MENUPAR">
+            <End Role="SystemMenu" EntitySet="SystemMenu" />
+            <End Role="SystemMenu1" EntitySet="SystemMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIGHT_RELATIONS_MENU" Association="WarehouseEntryModel.FK_RIGHT_RELATIONS_MENU">
+            <End Role="SystemMenu" EntitySet="SystemMenu" />
+            <End Role="SystemRight" EntitySet="SystemRight" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EntryRecord">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CompletionTime" Type="DateTime" Precision="3" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectNum" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="SuiteCount" Type="Int32" Nullable="false" />
+          <Property Name="ProductImgNum" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Sequence" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ImgNum" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Height" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="Width" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="StomachWeight" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="WingWeight" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="Length" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="PieceCount" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="AssemblageDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SolderingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CorrectionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InspectionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="3" />
+          <Property Name="DespatchDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Creator" Relationship="WarehouseEntryModel.FK_ENTRY_RELATIONS_CREATOR" FromRole="EntryRecord" ToRole="SecurityUser" />
+          <NavigationProperty Name="FlowProcess" Relationship="WarehouseEntryModel.FK_ENTRY_RELATIONS_FLOW" FromRole="EntryRecord" ToRole="FlowProcess" />
+          <NavigationProperty Name="Completer" Relationship="WarehouseEntryModel.FK_ENTRY_RELATIONS_HANDLER" FromRole="EntryRecord" ToRole="SecurityUser" />
+        </EntityType>
+        <EntityType Name="FlowProcess">
+          <Key>
+            <PropertyRef Name="ProcessID" />
+          </Key>
+          <Property Name="ProcessID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="SetupTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CompleteTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CurrentTaskSection" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CurrentHandleUrl" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="EntryRecords" Relationship="WarehouseEntryModel.FK_ENTRY_RELATIONS_FLOW" FromRole="FlowProcess" ToRole="EntryRecord" />
+          <NavigationProperty Name="CurrentHandler" Relationship="WarehouseEntryModel.FK_FLOW_RELATIONS_USER" FromRole="FlowProcess" ToRole="SecurityUser" />
+          <NavigationProperty Name="FlowTasks" Relationship="WarehouseEntryModel.FK_TASK_RELATIONS_PROCESS" FromRole="FlowProcess" ToRole="FlowTask" />
+        </EntityType>
+        <EntityType Name="FlowTask">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="HandleTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HandleUrl" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="FlowProcess" Relationship="WarehouseEntryModel.FK_TASK_RELATIONS_PROCESS" FromRole="FlowTask" ToRole="FlowProcess" />
+          <NavigationProperty Name="Handler" Relationship="WarehouseEntryModel.FK_TASK_RELATIONS_APPROVER" FromRole="FlowTask" ToRole="SecurityUser" />
+        </EntityType>
+        <EntityType Name="SecurityRole">
+          <Key>
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SystemRights" Relationship="WarehouseEntryModel.FK_RIGHT_RELATIONS_USER" FromRole="SecurityRole" ToRole="SystemRight" />
+          <NavigationProperty Name="SecurityUsers" Relationship="WarehouseEntryModel.FK_USER_RELATIONS_ROLE" FromRole="SecurityRole" ToRole="SecurityUser" />
+        </EntityType>
+        <EntityType Name="SecurityUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CreatedEntryRecords" Relationship="WarehouseEntryModel.FK_ENTRY_RELATIONS_CREATOR" FromRole="SecurityUser" ToRole="EntryRecord" />
+          <NavigationProperty Name="CompletedEntryRecords" Relationship="WarehouseEntryModel.FK_ENTRY_RELATIONS_HANDLER" FromRole="SecurityUser" ToRole="EntryRecord" />
+          <NavigationProperty Name="HandlingProcesses" Relationship="WarehouseEntryModel.FK_FLOW_RELATIONS_USER" FromRole="SecurityUser" ToRole="FlowProcess" />
+          <NavigationProperty Name="HandledTasks" Relationship="WarehouseEntryModel.FK_TASK_RELATIONS_APPROVER" FromRole="SecurityUser" ToRole="FlowTask" />
+          <NavigationProperty Name="SecurityRole" Relationship="WarehouseEntryModel.FK_USER_RELATIONS_ROLE" FromRole="SecurityUser" ToRole="SecurityRole" />
+        </EntityType>
+        <EntityType Name="SystemMenu">
+          <Key>
+            <PropertyRef Name="MenuName" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SubMenus" Relationship="WarehouseEntryModel.FK_MENU_RELATIONS_MENUPAR" FromRole="SystemMenu" ToRole="SystemMenu1" />
+          <NavigationProperty Name="ParentMenu" Relationship="WarehouseEntryModel.FK_MENU_RELATIONS_MENUPAR" FromRole="SystemMenu1" ToRole="SystemMenu" />
+          <NavigationProperty Name="SystemRights" Relationship="WarehouseEntryModel.FK_RIGHT_RELATIONS_MENU" FromRole="SystemMenu" ToRole="SystemRight" />
+        </EntityType>
+        <EntityType Name="SystemRight">
+          <Key>
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RightID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SecurityRole" Relationship="WarehouseEntryModel.FK_RIGHT_RELATIONS_USER" FromRole="SystemRight" ToRole="SecurityRole" />
+          <NavigationProperty Name="SystemMenu" Relationship="WarehouseEntryModel.FK_RIGHT_RELATIONS_MENU" FromRole="SystemRight" ToRole="SystemMenu" />
+        </EntityType>
+        <Association Name="FK_ENTRY_RELATIONS_CREATOR">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.SecurityUser" Multiplicity="1" />
+          <End Role="EntryRecord" Type="WarehouseEntryModel.EntryRecord" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ENTRY_RELATIONS_FLOW">
+          <End Role="FlowProcess" Type="WarehouseEntryModel.FlowProcess" Multiplicity="1" />
+          <End Role="EntryRecord" Type="WarehouseEntryModel.EntryRecord" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ENTRY_RELATIONS_HANDLER">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.SecurityUser" Multiplicity="0..1" />
+          <End Role="EntryRecord" Type="WarehouseEntryModel.EntryRecord" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_FLOW_RELATIONS_USER">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.SecurityUser" Multiplicity="0..1" />
+          <End Role="FlowProcess" Type="WarehouseEntryModel.FlowProcess" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TASK_RELATIONS_PROCESS">
+          <End Role="FlowProcess" Type="WarehouseEntryModel.FlowProcess" Multiplicity="1" />
+          <End Role="FlowTask" Type="WarehouseEntryModel.FlowTask" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TASK_RELATIONS_APPROVER">
+          <End Role="SecurityUser" Type="WarehouseEntryModel.SecurityUser" Multiplicity="1" />
+          <End Role="FlowTask" Type="WarehouseEntryModel.FlowTask" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_RIGHT_RELATIONS_USER">
+          <End Role="SecurityRole" Type="WarehouseEntryModel.SecurityRole" Multiplicity="1" />
+          <End Role="SystemRight" Type="WarehouseEntryModel.SystemRight" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_USER_RELATIONS_ROLE">
+          <End Role="SecurityRole" Type="WarehouseEntryModel.SecurityRole" Multiplicity="0..1" />
+          <End Role="SecurityUser" Type="WarehouseEntryModel.SecurityUser" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_MENU_RELATIONS_MENUPAR">
+          <End Role="SystemMenu" Type="WarehouseEntryModel.SystemMenu" Multiplicity="0..1" />
+          <End Role="SystemMenu1" Type="WarehouseEntryModel.SystemMenu" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_RIGHT_RELATIONS_MENU">
+          <End Role="SystemMenu" Type="WarehouseEntryModel.SystemMenu" Multiplicity="1" />
+          <End Role="SystemRight" Type="WarehouseEntryModel.SystemRight" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WarehouseEntryModelStoreContainer" CdmEntityContainer="WarehouseEntryDbContext">
+          <EntitySetMapping Name="EntryRecord">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.EntryRecord">
+              <MappingFragment StoreEntitySet="EntryRecord">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="CompletionTime" ColumnName="CompletionTime" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectNum" ColumnName="ProjectNum" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="SuiteCount" ColumnName="SuiteCount" />
+                <ScalarProperty Name="ProductImgNum" ColumnName="ProductImgNum" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ImgNum" ColumnName="ImgNum" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="StomachWeight" ColumnName="StomachWeight" />
+                <ScalarProperty Name="WingWeight" ColumnName="WingWeight" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="PieceCount" ColumnName="PieceCount" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="AssemblageDate" ColumnName="AssemblageDate" />
+                <ScalarProperty Name="SolderingDate" ColumnName="SolderingDate" />
+                <ScalarProperty Name="CorrectionDate" ColumnName="CorrectionDate" />
+                <ScalarProperty Name="InspectionDate" ColumnName="InspectionDate" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="DespatchDate" ColumnName="DespatchDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowProcess">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.FlowProcess">
+              <MappingFragment StoreEntitySet="FlowProcess">
+                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SetupTime" ColumnName="SetupTime" />
+                <ScalarProperty Name="CompleteTime" ColumnName="CompleteTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CurrentTaskSection" ColumnName="CurrentTaskSection" />
+                <ScalarProperty Name="CurrentHandleUrl" ColumnName="CurrentHandleUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowTask">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.FlowTask">
+              <MappingFragment StoreEntitySet="FlowTask">
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HandleTime" ColumnName="HandleTime" />
+                <ScalarProperty Name="HandleUrl" ColumnName="HandleUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityRole">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.SecurityRole">
+              <MappingFragment StoreEntitySet="SecurityRole">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityUser">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.SecurityUser">
+              <MappingFragment StoreEntitySet="SecurityUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemMenu">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.SystemMenu">
+              <MappingFragment StoreEntitySet="SystemMenu">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemRight">
+            <EntityTypeMapping TypeName="WarehouseEntryModel.SystemRight">
+              <MappingFragment StoreEntitySet="SystemRight">
+                <ScalarProperty Name="RightID" ColumnName="RightID" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_ENTRY_RELATIONS_CREATOR" TypeName="WarehouseEntryModel.FK_ENTRY_RELATIONS_CREATOR" StoreEntitySet="EntryRecord">
+            <EndProperty Name="SecurityUser">
+              <ScalarProperty Name="UserName" ColumnName="CreatorName" />
+            </EndProperty>
+            <EndProperty Name="EntryRecord">
+              <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ENTRY_RELATIONS_FLOW" TypeName="WarehouseEntryModel.FK_ENTRY_RELATIONS_FLOW" StoreEntitySet="EntryRecord">
+            <EndProperty Name="FlowProcess">
+              <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+            </EndProperty>
+            <EndProperty Name="EntryRecord">
+              <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ENTRY_RELATIONS_HANDLER" TypeName="WarehouseEntryModel.FK_ENTRY_RELATIONS_HANDLER" StoreEntitySet="EntryRecord">
+            <EndProperty Name="SecurityUser">
+              <ScalarProperty Name="UserName" ColumnName="CompleterName" />
+            </EndProperty>
+            <EndProperty Name="EntryRecord">
+              <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+            </EndProperty>
+            <Condition ColumnName="CompleterName" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_FLOW_RELATIONS_USER" TypeName="WarehouseEntryModel.FK_FLOW_RELATIONS_USER" StoreEntitySet="FlowProcess">
+            <EndProperty Name="SecurityUser">
+              <ScalarProperty Name="UserName" ColumnName="CurrentHandler" />
+            </EndProperty>
+            <EndProperty Name="FlowProcess">
+              <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+            </EndProperty>
+            <Condition ColumnName="CurrentHandler" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TASK_RELATIONS_PROCESS" TypeName="WarehouseEntryModel.FK_TASK_RELATIONS_PROCESS" StoreEntitySet="FlowTask">
+            <EndProperty Name="FlowProcess">
+              <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+            </EndProperty>
+            <EndProperty Name="FlowTask">
+              <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TASK_RELATIONS_APPROVER" TypeName="WarehouseEntryModel.FK_TASK_RELATIONS_APPROVER" StoreEntitySet="FlowTask">
+            <EndProperty Name="SecurityUser">
+              <ScalarProperty Name="UserName" ColumnName="HandlerName" />
+            </EndProperty>
+            <EndProperty Name="FlowTask">
+              <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_RIGHT_RELATIONS_USER" TypeName="WarehouseEntryModel.FK_RIGHT_RELATIONS_USER" StoreEntitySet="SystemRight">
+            <EndProperty Name="SecurityRole">
+              <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+            </EndProperty>
+            <EndProperty Name="SystemRight">
+              <ScalarProperty Name="RightID" ColumnName="RightID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_USER_RELATIONS_ROLE" TypeName="WarehouseEntryModel.FK_USER_RELATIONS_ROLE" StoreEntitySet="SecurityUser">
+            <EndProperty Name="SecurityRole">
+              <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+            </EndProperty>
+            <EndProperty Name="SecurityUser">
+              <ScalarProperty Name="UserName" ColumnName="UserName" />
+            </EndProperty>
+            <Condition ColumnName="RoleName" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_MENU_RELATIONS_MENUPAR" TypeName="WarehouseEntryModel.FK_MENU_RELATIONS_MENUPAR" StoreEntitySet="SystemMenu">
+            <EndProperty Name="SystemMenu">
+              <ScalarProperty Name="MenuName" ColumnName="ParentMenuName" />
+            </EndProperty>
+            <EndProperty Name="SystemMenu1">
+              <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+            </EndProperty>
+            <Condition ColumnName="ParentMenuName" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_RIGHT_RELATIONS_MENU" TypeName="WarehouseEntryModel.FK_RIGHT_RELATIONS_MENU" StoreEntitySet="SystemRight">
+            <EndProperty Name="SystemMenu">
+              <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+            </EndProperty>
+            <EndProperty Name="SystemRight">
+              <ScalarProperty Name="RightID" ColumnName="RightID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

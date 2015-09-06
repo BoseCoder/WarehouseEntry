@@ -1,0 +1,75 @@
+﻿.role-board {
+    background-color: #c6edff;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+    .role-board .role-board-content {
+        float: right;
+        width: 100%;
+    }
+
+        .role-board .role-board-content > div {
+            margin: 20px 10px 20px 300px;
+            padding: 10px;
+            min-height: 600px;
+            background-color: #FFFFFF;
+        }
+
+    .role-board .role-board-silder {
+        float: left;
+        width: 300px;
+        margin-right: -300px;
+        padding: 10px 0 10px 10px;
+    }
+
+        .role-board .role-board-silder .role-container .role-name {
+            line-height: 42px;
+        }
+
+        .role-board .role-board-silder .role-container .role-list-title {
+            font-weight: bold;
+            line-height: 60px;
+            font-size: 24px;
+            padding-bottom: 10px;
+        }
+
+        .role-board .role-board-silder .role-container a.btn-action {
+            float: right;
+            margin: 5px 20px;
+        }
+
+        .role-board .role-board-silder .role-container ul.role-list {
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+            .role-board .role-board-silder .role-container ul.role-list li {
+                display: block;
+                margin: 0;
+                padding-left: 10px;
+            }
+
+                .role-board .role-board-silder .role-container ul.role-list li.active {
+                    background-color: #FFFFFF;
+                }
+
+                .role-board .role-board-silder .role-container ul.role-list li .role-name {
+                    display: block;
+                }
+
+                    .role-board .role-board-silder .role-container ul.role-list li .role-name.role-edit {
+                        float: left;
+                    }
+
+        .role-board .role-board-silder .role-container .role-add-container > div {
+            float: left;
+            padding-top: 8px;
+        }
+
+    .role-board br {
+        clear: both;
+    }

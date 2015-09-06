@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AssemblageDate" xml:space="preserve">
+    <value>组立日期</value>
+    <comment>组立日期</comment>
+  </data>
+  <data name="AssemblageDateRequired" xml:space="preserve">
+    <value>组立日期是必需的，请输入一个有效日期！</value>
+    <comment>组立日期是必需的，请输入一个有效日期！</comment>
+  </data>
+  <data name="CompletionDate" xml:space="preserve">
+    <value>完工日期</value>
+    <comment>完工日期</comment>
+  </data>
+  <data name="CompletionDateRequired" xml:space="preserve">
+    <value>完工日期是必需的，请输入一个有效日期！</value>
+    <comment>完工日期是必需的，请输入一个有效日期！</comment>
+  </data>
+  <data name="CorrectionDate" xml:space="preserve">
+    <value>矫正日期</value>
+    <comment>矫正日期</comment>
+  </data>
+  <data name="CorrectionDateRequired" xml:space="preserve">
+    <value>矫正日期是必需的，请输入一个有效日期！</value>
+    <comment>矫正日期是必需的，请输入一个有效日期！</comment>
+  </data>
+  <data name="DespatchDate" xml:space="preserve">
+    <value>发运日期</value>
+    <comment>发运日期</comment>
+  </data>
+  <data name="DespatchDateRequired" xml:space="preserve">
+    <value>发运日期是必需的，请输入一个有效日期！</value>
+    <comment>发运日期是必需的，请输入一个有效日期！</comment>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>高度</value>
+    <comment>高度</comment>
+  </data>
+  <data name="HeightRequired" xml:space="preserve">
+    <value>高度是必需的，请输入一个有效小数！</value>
+    <comment>高度是必需的，请输入一个有效小数！</comment>
+  </data>
+  <data name="ImgNum" xml:space="preserve">
+    <value>图号</value>
+    <comment>图号</comment>
+  </data>
+  <data name="ImgNumRequired" xml:space="preserve">
+    <value>图号是必需的，请输入一个有效图号！</value>
+    <comment>图号是必需的，请输入一个有效图号！</comment>
+  </data>
+  <data name="ImgNumStringLength" xml:space="preserve">
+    <value>图号太长了，不能超过{1}字，请重新输入！</value>
+    <comment>图号太长了，不能超过{1}字，请重新输入！</comment>
+  </data>
+  <data name="InspectionDate" xml:space="preserve">
+    <value>报检日期</value>
+    <comment>报检日期</comment>
+  </data>
+  <data name="InspectionDateRequired" xml:space="preserve">
+    <value>报检日期是必需的，请输入一个有效日期！</value>
+    <comment>报检日期是必需的，请输入一个有效日期！</comment>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>长度</value>
+    <comment>长度</comment>
+  </data>
+  <data name="LengthRequired" xml:space="preserve">
+    <value>长度是必需的，请输入一个有效小数！</value>
+    <comment>长度是必需的，请输入一个有效小数！</comment>
+  </data>
+  <data name="ModelId" xml:space="preserve">
+    <value>ID</value>
+    <comment>ID</comment>
+  </data>
+  <data name="ModelIdRequired" xml:space="preserve">
+    <value>Id is required.</value>
+    <comment>Id is required.</comment>
+  </data>
+  <data name="PieceCount" xml:space="preserve">
+    <value>件数</value>
+    <comment>件数</comment>
+  </data>
+  <data name="PieceCountRequired" xml:space="preserve">
+    <value>件数是必需的，请输入一个有效整数！</value>
+    <comment>件数是必需的，请输入一个有效整数！</comment>
+  </data>
+  <data name="ProductImgNum" xml:space="preserve">
+    <value>产品图号</value>
+    <comment>产品图号</comment>
+  </data>
+  <data name="ProductImgNumRequired" xml:space="preserve">
+    <value>产品图号是必需的，请输入一个有效图号！</value>
+    <comment>产品图号是必需的，请输入一个有效图号！</comment>
+  </data>
+  <data name="ProductImgNumStringLength" xml:space="preserve">
+    <value>产品图号太长了，不能超过{1}字，请重新输入！</value>
+    <comment>产品图号太长了，不能超过{1}字，请重新输入！</comment>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>产品名称</value>
+    <comment>产品名称</comment>
+  </data>
+  <data name="ProductNameRequired" xml:space="preserve">
+    <value>产品名称是必需的，请输入一个有效名称！</value>
+    <comment>产品名称是必需的，请输入一个有效名称！</comment>
+  </data>
+  <data name="ProductNameStringLength" xml:space="preserve">
+    <value>产品名称太长了，不能超过{1}字，请重新输入！</value>
+    <comment>产品名称太长了，不能超过{1}字，请重新输入！</comment>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>项目名称</value>
+    <comment>项目名称</comment>
+  </data>
+  <data name="ProjectNameRequired" xml:space="preserve">
+    <value>项目名称是必需的，请输入一个有效名称！</value>
+    <comment>项目名称是必需的，请输入一个有效名称！</comment>
+  </data>
+  <data name="ProjectNameStringLength" xml:space="preserve">
+    <value>项目名称太长了，不能超过{1}字，请重新输入！</value>
+    <comment>项目名称太长了，不能超过{1}字，请重新输入！</comment>
+  </data>
+  <data name="ProjectNum" xml:space="preserve">
+    <value>项目工号</value>
+    <comment>项目工号</comment>
+  </data>
+  <data name="ProjectNumRequired" xml:space="preserve">
+    <value>项目工号是必需的，请输入一个有效工号！</value>
+    <comment>项目工号是必需的，请输入一个有效工号！</comment>
+  </data>
+  <data name="ProjectNumStringLength" xml:space="preserve">
+    <value>项目工号太长了，不能超过{1}字，请重新输入！</value>
+    <comment>项目工号太长了，不能超过{1}字，请重新输入！</comment>
+  </data>
+  <data name="Sequence" xml:space="preserve">
+    <value>序号</value>
+    <comment>序号</comment>
+  </data>
+  <data name="SequenceRequired" xml:space="preserve">
+    <value>序号是必需的，请输入一个有效序号！</value>
+    <comment>序号是必需的，请输入一个有效序号！</comment>
+  </data>
+  <data name="SequenceStringLength" xml:space="preserve">
+    <value>序号太长了，不能超过{1}字，请重新输入！</value>
+    <comment>序号太长了，不能超过{1}字，请重新输入！</comment>
+  </data>
+  <data name="SolderingDate" xml:space="preserve">
+    <value>焊接日期</value>
+    <comment>焊接日期</comment>
+  </data>
+  <data name="SolderingDateRequired" xml:space="preserve">
+    <value>焊接日期是必需的，请输入一个有效日期！</value>
+    <comment>焊接日期是必需的，请输入一个有效日期！</comment>
+  </data>
+  <data name="StomachWeight" xml:space="preserve">
+    <value>腹厚</value>
+    <comment>腹厚</comment>
+  </data>
+  <data name="StomachWeightRequired" xml:space="preserve">
+    <value>腹厚是必需的，请输入一个有效小数！</value>
+    <comment>腹厚是必需的，请输入一个有效小数！</comment>
+  </data>
+  <data name="SuiteCount" xml:space="preserve">
+    <value>套数</value>
+    <comment>套数</comment>
+  </data>
+  <data name="SuiteCountRequired" xml:space="preserve">
+    <value>套数是必需的，请输入一个有效整数！</value>
+    <comment>套数是必需的，请输入一个有效整数！</comment>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>单重</value>
+    <comment>单重</comment>
+  </data>
+  <data name="WeightRequired" xml:space="preserve">
+    <value>单重是必需的，请输入一个有效小数！</value>
+    <comment>单重是必需的，请输入一个有效小数！</comment>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>宽度</value>
+    <comment>宽度</comment>
+  </data>
+  <data name="WidthRequired" xml:space="preserve">
+    <value>宽度是必需的，请输入一个有效小数！</value>
+    <comment>宽度是必需的，请输入一个有效小数！</comment>
+  </data>
+  <data name="WingWeight" xml:space="preserve">
+    <value>翼厚</value>
+    <comment>翼厚</comment>
+  </data>
+  <data name="WingWeightRequired" xml:space="preserve">
+    <value>翼厚是必需的，请输入一个有效小数！</value>
+    <comment>翼厚是必需的，请输入一个有效小数！</comment>
+  </data>
+</root>

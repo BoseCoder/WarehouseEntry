@@ -1,0 +1,92 @@
+﻿@using Resources
+@{
+    Layout = "";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@SiteCommonResource.ViewTitleUserControllerSignIn</title>
+    <link rel="shortcut icon" href='@Url.Content("~/Icon.ico")' type="image/x-icon" />
+    @Styles.Render("~/Content/CssCore/Bootstrap")
+    <link href='@Href("~/Content/SignIn/base.css")' type="text/css" rel="stylesheet" />
+    <link href='@Href("~/Content/SignIn/login.css")' type="text/css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/scriptcore")
+    @Scripts.Render("~/bundles/custom")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(document).keydown(function (e) {
+                if (e.keyCode == 13) {
+                    if ($("#txtUserName").val().trim() == "") {
+                        $("#txtUserName").focus();
+                        return false;
+                    } else if ($("#txtPassword").val().trim() == "") {
+                        $("#txtPassword").focus();
+                        return false;
+                    }
+                    $("#btnSignIn").click();
+                }
+                return true;
+            });
+
+            $("#btnSignIn").click(function () {
+                ajaxPost('@Url.Action("SignIn")',
+                    {
+                        userName: $("#txtUserName").val(),
+                        password: $("#txtPassword").val(),
+                        backUrl: '@Url.RequestContext.HttpContext.Request["backUrl"]'
+                    },
+                    function () {
+                        $("#btnSignIn").hide();
+                        $("#signInWaiting").show();
+                        return true;
+                    },
+                    function (data) {
+                        showSeccess(data, true);
+                    },
+                    function (data) {
+                        showFailed(data);
+                        $("#btnSignIn").show();
+                        $("#signInWaiting").hide();
+                    });
+            });
+
+            $("#txtUserName").focus();
+        });
+
+    </script>
+</head>
+<body>
+    <div ng-show="alertShown" class="alert-top-wrapper ng-hide">
+        <div class="alert alert-dismissable" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]" role="alert" alert="" type="workaround" style="display: inline-block;">
+            <div ng-transclude="">
+                <span class="icon"></span>
+                <span class="message-container"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="login">
+        <form action="SignIn.cshtml" id="form">
+            <div class="logo"></div>
+            <div class="login_form">
+                <div class="user">
+                    <input class="text_value" value="" name="username" type="text" id="txtUserName" />
+                    <input class="text_value" value="" name="password" type="password" id="txtPassword" />
+                </div>
+                <button class="button" id="btnSignIn" type="button"></button>
+                <div id="signInWaiting" class="waiting">
+                    <span class="icon-spinner icon-spin"></span>
+                </div>
+            </div>
+            <div class="foot">
+                @SiteCommonResource.TextCopyright
+            </div>
+        </form>
+    </div>
+</body>
+</html>

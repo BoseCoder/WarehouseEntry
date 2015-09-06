@@ -1,0 +1,277 @@
+﻿@using Resources
+@using WarehouseEntry.Business.Languages
+@model WarehouseEntry.Models.ViewUserIndexModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section DynamicHeader{
+    <link href="~/Content/Custom/roleboard.css" rel="stylesheet" />
+    <style type="text/css">
+        .btn-action.btn-delete-user {
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function deleteRole(target) {
+            var lbtn = $(target);
+            var name = lbtn.prev().text().trim();
+            ajaxPost('@Url.Action("DeleteRole")',
+                { roleName: name },
+                undefined,
+                function (data) {
+                    if (lbtn.parent().hasClass("active")) {
+                        showSeccess(data);
+                        location.reload(true);
+                    } else {
+                        lbtn.parent().remove();
+                        showSeccess(data);
+                    }
+                },
+                showFailed);
+        }
+
+        function deleteUser(target) {
+            $(target);
+            //var user = $(target).parentsUntil("tr").last().parent().children().first().text().trim();
+        }
+
+        function updateUserEnable(target) {
+            var cbox = $(target);
+            var checked = cbox.is(":checked");
+            var user = cbox.parentsUntil("tr").last().parent().children().first().text().trim();
+            ajaxPost('@Url.Action("EnableUser")',
+                { userName: user, enabled: checked },
+                undefined,
+                showSeccess,
+                function (responseData) {
+                    showFailed(responseData);
+                    cbox.bootstrapSwitch("state", !checked, true);
+                });
+        }
+
+
+        $(document).ready(function () {
+
+            $(".bootstrap-switch input[type='checkbox']").bootstrapSwitch({
+                onSwitchChange: function () {
+                    updateUserEnable(this);
+                }
+            });
+
+            function parseDate(jsonDate) {
+                var date = new Date(parseInt(jsonDate.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1;
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                var day = date.getDate();
+                if (day < 10) {
+                    day = "0" + day;
+                }
+                return date.getFullYear() + "-" + month + "-" + day;
+            }
+
+            $("#lbtnAddRole").click(function () {
+                var name = $("#txtRoleName").val().trim();
+                if (name == "") {
+                    showFailed({ Msg: '@string.Format(ErrorResource.EmptyFormat, UserModelResource.RoleName)' });
+                    return;
+                }
+                ajaxPost('@Url.Action("CreateRole")',
+                    { roleName: $("#txtRoleName").val().trim() },
+                    undefined,
+                    function (data) {
+                        var roleName = data.ObjectModel.RoleName;
+                        if ($("ul.role-list .role-name").length < 1) {
+                            showSeccess(data);
+                            location.reload(true);
+                        } else {
+                            var li = $(document.createElement("li"));
+                            $("ul.role-list").append(li);
+
+                            var innerLink = $(document.createElement("a"));
+                            li.append(innerLink);
+                            innerLink.text(roleName);
+                            innerLink.attr("href", '@Url.Action("UserIndex")' + "?roleName=" + roleName);
+                            innerLink.addClass("role-name role-edit");
+
+                            var btnAction = $(document.createElement("a"));
+                            li.append(btnAction);
+                            btnAction.attr("title", "@SiteCommonResource.ActionDeleteToolTip");
+                            btnAction.attr("href", "javascript:void(0);");
+                            btnAction.addClass("btn-action icon-minus-sign");
+                            btnAction.click(function () {
+                                deleteRole(this);
+                            });
+
+                            var listItemBr = $(document.createElement("br"));
+                            li.append(listItemBr);
+
+                            $("#txtRoleName").val("");
+                            showSeccess(data);
+                        }
+                    }, showFailed);
+            });
+
+            $("ul.role-list li a.btn-action.icon-minus-sign").click(function () {
+                deleteRole(this);
+            });
+
+            $("#lbtnAddUser").click(function () {
+                var roleName = $("ul.role-list span").text().trim();
+                if (roleName == "") {
+                    showFailed({ Msg: '@string.Format(ErrorResource.EmptyFormat, UserModelResource.RoleName)' });
+                    return;
+                }
+                var userName = $("#txtUserName").val().trim();
+                if (userName == "") {
+                    showFailed({ Msg: '@string.Format(ErrorResource.EmptyFormat, UserModelResource.UserName)' });
+                    return;
+                }
+                var displayName = $("#txtDisplayName").val().trim();
+                var enabled = $("#cboxUserEnabled").is(":checked");
+                ajaxPost('@Url.Action("CreateUser")',
+                    {
+                        model: { RoleName: roleName, UserName: userName, DisplayName: displayName, Enabled: enabled },
+                        // 默认密码
+                        password: "123456"
+                    },
+                    undefined,
+                    function (data) {
+                        var userRow = $(document.createElement("tr"));
+                        $("#rowUserAction").before(userRow);
+
+                        var userNameTd = $(document.createElement("td"));
+                        userRow.append(userNameTd);
+                        userNameTd.text(data.ObjectModel.UserName);
+
+                        var displayNameTd = $(document.createElement("td"));
+                        userRow.append(displayNameTd);
+                        displayNameTd.text(data.ObjectModel.DisplayName);
+
+                        var creationTimeTd = $(document.createElement("td"));
+                        userRow.append(creationTimeTd);
+                        creationTimeTd.text(parseDate(data.ObjectModel.CreationTime));
+
+                        var enabledTd = $(document.createElement("td"));
+                        userRow.append(enabledTd);
+                        var switchDiv = $(document.createElement("div"));
+                        enabledTd.append(switchDiv);
+                        switchDiv.addClass("bootstrap-switch bootstrap-switch-small");
+                        var switchBox = $(document.createElement("input"));
+                        switchDiv.append(switchBox);
+                        switchBox.attr("type", "checkbox");
+                        if (data.ObjectModel.Enabled) {
+                            switchBox.attr("checked", "checked");
+                        }
+                        switchBox.bootstrapSwitch({
+                            onSwitchChange: function () {
+                                updateUserEnable(this);
+                            }
+                        });
+
+                        var userDeleterTd = $(document.createElement("td"));
+                        userRow.append(userDeleterTd);
+                        var userDeleter = $(document.createElement("a"));
+                        userDeleterTd.append(userDeleter);
+                        userDeleter.attr("title", "@SiteCommonResource.ActionDeleteToolTip");
+                        userDeleter.attr("href", "javascript:void(0);");
+                        userDeleter.addClass("btn-action icon-minus-sign");
+                        userDeleter.click(function () {
+                            deleteUser(this);
+                        });
+
+                        $("#txtUserName").val("");
+                        $("#txtDisplayName").val("");
+                        showSeccess(data);
+                    },
+                    function (data) {
+                        showFailed(data);
+                    });
+
+            });
+
+            $(".role-board-content a.btn-action.icon-minus-sign").click(function () {
+                deleteUser(this);
+            });
+        });
+    </script>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="role-board">
+                <div class="role-board-content">
+                    <div>
+                        <h3 class="icon-user"><strong>@FunctionResource.UserControllerUserIndex</strong></h3>
+                        <hr />
+                        @Html.Partial("UserList", Model.Users)
+                        <div class="alert alert-info">
+                            <h4 class="icon-info-sign">
+                                <strong>@SiteCommonResource.AlertInfoTitle</strong>
+                            </h4>
+                            <div>
+                                <span>@SiteCommonResource.MessageDefaultPassword</span>
+                            </div>
+                        </div>
+                        @if (Model.IsVirtualAccount)
+                        {
+                            <div class="alert alert-warning">
+                                <h4 class="icon-warning-sign">
+                                    <strong>@SiteCommonResource.AlertWarningTitle</strong>
+                                </h4>
+                                <div>
+                                    <span>@SiteCommonResource.AlertWarningNoUser</span>
+                                </div>
+                                <div>
+                                    <span>@SiteCommonResource.AlertWarningHasUser</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="role-board-silder">
+                    <div class="role-container">
+                        <div class="role-list-title">
+                            <h3 class="icon-group">@SiteCommonResource.TextRoleList</h3>
+                        </div>
+                        <ul class="role-list">
+                            @foreach (var role in Model.Roles)
+                            {
+                                if (role.Selected)
+                                {
+                                <li class="active">
+                                    <span class="role-name role-edit">@role.DataModel.RoleName</span>
+                                    <a class="btn-action icon-minus-sign" title="@SiteCommonResource.ActionDeleteToolTip" href="javascript:void(0);"></a>
+                                    <br />
+                                </li>
+                                }
+                                else
+                                {
+                                <li>
+                                    @Html.ActionLink(role.DataModel.RoleName, "UserIndex", null,
+                                        new { roleName = role.DataModel.RoleName }, new { @class = "role-name role-edit" })
+                                    <a class="btn-action icon-minus-sign" title="@SiteCommonResource.ActionDeleteToolTip" href="javascript:void(0);"></a>
+                                    <br />
+                                </li>
+                                }
+                            }
+                        </ul>
+                        <div class="role-add-container">
+                            <div>
+                                <input type="text" id="txtRoleName" name="txtRoleName" />
+                            </div>
+                            <a id="lbtnAddRole" class="btn-action icon-plus-sign" title="@SiteCommonResource.ActionCreateToolTip" href="javascript:void(0);"></a>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

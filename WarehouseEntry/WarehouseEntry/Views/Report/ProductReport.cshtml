@@ -1,0 +1,189 @@
+﻿@using Resources
+@model WarehouseEntry.Models.ViewProductReportModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section DynamicHeader{
+
+    <script type="text/javascript" src='@Url.Content("~/Scripts/Chart.js")'></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var endDate = new Date();
+            var startDate = new Date(endDate);
+            startDate.setDate(1);
+
+            $("#start-date-container .date").datetimepicker({
+                language: 'zh-CN',
+                weekStart: 0,
+                autoclose: true,
+                todayBtn: true,
+                todayHighlight: true,
+                startView: "month",
+                minView: "month",
+                forceParse: true,
+                pickerPosition: "bottom-left"
+            }).datetimepicker('update', startDate);
+
+            $("#end-date-container .date").datetimepicker({
+                language: 'zh-CN',
+                weekStart: 0,
+                autoclose: true,
+                todayBtn: true,
+                todayHighlight: true,
+                startView: "month",
+                minView: "month",
+                forceParse: true,
+                pickerPosition: "bottom-left"
+            }).datetimepicker('update', endDate);
+
+            $(".bootstrap-switch input[type='checkbox']").bootstrapSwitch({
+                onText: "Completed",
+                offText: "All",
+                onColor: "primary",
+                offColor: "primary",
+                onSwitchChange: function () {
+                    refreshChart();
+                }
+            });
+
+            function refreshChart() {
+                var start = $("#txtStartDate").val().trim();
+                if (start == "") {
+                    start = null;
+                }
+                var end = $("#txtEndDate").val().trim();
+                if (end == "") {
+                    end = null;
+                }
+                ajaxPost('@Url.Action("ProductReportData", "Report")',
+                    { startDate: start, endDate: end, projectName: $("#ddlProjectName").val() },
+                    undefined,
+                    function (dataModel) {
+                        var chartData = dataModel.ObjectModel.chartData;
+                        for (var i = 0; i < chartData.datasets.length; i++) {
+                            chartData.datasets[i].fillColor = "rgba(92, 184, 92, 0.5)";
+                            chartData.datasets[i].strokeColor = "rgba(57, 132, 57, 1)";
+                            //for (var j = 0; j < chartData.datasets[i].dataDetail.length; j++) {
+                            //}
+                        }
+                        var chart = document.getElementById("myChart");
+                        var ctx = chart.getContext("2d");
+                        window.myBar = new Chart(ctx).Bar(chartData,
+                        {
+                            scaleFontSize: 14,
+                        });
+                        $("#aggregateValue").text(dataModel.ObjectModel.aggregate);
+                    },
+                    function () {
+
+                    });
+            }
+
+            $("#btnSearch").click(function () {
+                refreshChart();
+            });
+
+            $("#btnPreMonth").click(function () {
+                var start = $("#txtStartDate").val().trim();
+                if (start != "") {
+                    start = $("#start-date-container .date").datetimepicker("getDate");
+                    start.setDate(0);
+                } else {
+                    start = new Date().setDate(0);
+                }
+                var end = new Date(start);
+                $("#end-date-container .date").datetimepicker("update", end);
+                start.setDate(1);
+                $("#start-date-container .date").datetimepicker("update", start);
+                refreshChart();
+            });
+
+            $("#btnNextMonth").click(function () {
+                var now = new Date();
+                var end = $("#txtEndDate").val().trim();
+                if (end != "") {
+                    end = $("#end-date-container .date").datetimepicker("getDate");
+                    end.setDate(1);
+                    end.setMonth(end.getMonth() + 1);
+                } else {
+                    end = now.setDate(1);
+                    end.setMonth(end.getMonth() + 1);
+                }
+                end.setMonth(end.getMonth() + 1);
+                end.setDate(0);
+                if (end > now) {
+                    end = now;
+                }
+                var start = new Date(end);
+                start.setDate(1);
+                $("#start-date-container .date").datetimepicker("update", start);
+                $("#end-date-container .date").datetimepicker("update", end);
+                refreshChart();
+            });
+
+            refreshChart();
+
+        });
+
+    </script>
+}
+
+<div class="container">
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="txtStartDate">@SiteCommonResource.TextStartDate</label>
+                    <div id="start-date-container" class="col-md-8">
+                        <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" id="txtStartDate" type="datetime" value="">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="txtEndDate">@SiteCommonResource.TextEndDate</label>
+                    <div id="end-date-container" class="col-md-8">
+                        <div class="input-group date" data-date="" data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" id="txtEndDate" type="datetime" value="">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectName, new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(m => m.ProjectName, Model.ProjectNames, new { @class = "form-control", id = "ddlProjectName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6 col-xs-offset-3 col-md-offset-3" style="text-align: center;">
+                <div class="form-group">
+                    <input id="btnSearch" type="button" value="@SiteCommonResource.TextSearch" class="button button-pill button-primary" />
+                    <input id="btnPreMonth" type="button" value="@SiteCommonResource.TextPreviousMonth" class="button button-pill button-primary" />
+                    <input id="btnNextMonth" type="button" value="@SiteCommonResource.TextNextMonth" class="button button-pill button-primary" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12" style="font-size: 20px; font-weight: bold; margin-top: 10px; line-height: 32px;">
+                <span>@SiteCommonResource.TextAggregate</span>
+                <span id="aggregateValue">0</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <canvas id="myChart" width="1000" height="620"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

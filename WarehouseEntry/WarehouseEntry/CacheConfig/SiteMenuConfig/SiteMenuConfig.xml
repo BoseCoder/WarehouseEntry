@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteMenuRoot>
+  <SubMenus>
+    <SiteMenuModel text="HomeIndex" url="~/" isAction="true" cssClass="icon-home" visible="true"></SiteMenuModel>
+    <SiteMenuModel text="VirtualUserAndRight" url="" isAction="false" cssClass="icon-group" visible="true">
+      <SubMenus>
+        <SiteMenuModel text="UserControllerUserIndex" url="~/User/UserIndex" isAction="true" cssClass="icon-user" visible="true"></SiteMenuModel>
+        <SiteMenuModel text="UserControllerRightIndex" url="~/User/RightIndex" isAction="true" cssClass="icon-lock" visible="true"></SiteMenuModel>
+        <SiteMenuModel text="UserControllerChangePassword" url="~/User/ChangePassword" isAction="true" cssClass="icon-key" visible="true"></SiteMenuModel>
+      </SubMenus>
+    </SiteMenuModel>
+    <SiteMenuModel text="VirtualEntry" url="" isAction="false" cssClass="icon-truck" visible="true">
+      <SubMenus>
+        <SiteMenuModel text="EntryControllerCreateEntry" url="~/Entry/CreateEntry" isAction="true" cssClass="" visible="true"></SiteMenuModel>
+        <SiteMenuModel text="EntryControllerEditEntry" url="~/Entry/EditEntry" isAction="true" cssClass="" visible="false"></SiteMenuModel>
+        <SiteMenuModel text="EntryControllerCompleteEntry" url="~/Entry/CompleteEntry" isAction="true" cssClass="" visible="false"></SiteMenuModel>
+        <SiteMenuModel text="EntryControllerBatchCreateEntry" url="~/Entry/BatchCreateEntry" isAction="true" cssClass="" visible="true"></SiteMenuModel>
+        <SiteMenuModel text="EntryControllerBatchEditEntry" url="~/Entry/BatchEditEntry" isAction="true" cssClass="" visible="false"></SiteMenuModel>
+        <SiteMenuModel text="EntryControllerBatchCompleteEntry" url="~/Entry/BatchCompleteEntry" isAction="true" cssClass="" visible="false"></SiteMenuModel>
+      </SubMenus>
+    </SiteMenuModel>
+    <SiteMenuModel text="VirtualReport" url="" isAction="false" cssClass="icon-bar-chart" visible="true">
+      <SubMenus>
+        <SiteMenuModel text="ReportControllerWeightReport" url="~/Report/WeightReport" isAction="true" cssClass="" visible="true"></SiteMenuModel>
+        <SiteMenuModel text="ReportControllerProductReport" url="~/Report/ProductReport" isAction="true" cssClass="" visible="true"></SiteMenuModel>
+      </SubMenus>
+    </SiteMenuModel>
+  </SubMenus>
+</SiteMenuRoot>

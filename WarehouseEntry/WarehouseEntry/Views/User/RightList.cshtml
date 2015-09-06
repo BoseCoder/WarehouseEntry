@@ -1,0 +1,30 @@
+﻿@using WarehouseEntry.Models
+@model IEnumerable<WarehouseEntry.Business.Models.BusinessRightModel>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="menu-container">
+            <div class="menu-top">
+                @{string cboxID = string.Format("cbox{0}", item.MenuName);}
+                <input type="checkbox" id="@cboxID" checked="@item.Enabled" value="@item.MenuName" />
+                <label for="@cboxID">
+                    @ViewBaseModel.GetFunctionText(item.MenuName)
+                </label>
+            </div>
+            <div class="menu-sub-container">
+                @foreach (var subItem in item.SubRightModels)
+                {
+                    <div>
+                        @{string cboxSubID = string.Format("cbox{0}", subItem.MenuName);}
+                        <input type="checkbox" id="@cboxSubID" checked="@subItem.Enabled" value="@subItem.MenuName" />
+                        <label for="@cboxSubID">
+                            @ViewBaseModel.GetFunctionText(subItem.MenuName)
+                        </label>
+                    </div>
+                }
+                <br />
+            </div>
+        </div>
+    }
+</div>

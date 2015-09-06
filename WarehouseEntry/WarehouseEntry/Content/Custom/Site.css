@@ -1,0 +1,112 @@
+﻿/* alert */
+.alert-top-wrapper {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: inline-block !important;
+    -webkit-transition: -webkit-transform .5s, opacity .5s;
+    transition: transform .5s, opacity .5s;
+    -webkit-transition: -webkit-transform cubic-bezier(0.19, 1, 0.22, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+    transition: transform cubic-bezier(0.19, 1, 0.22, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+    pointer-events: none;
+    text-align: center;
+}
+
+    .alert-top-wrapper.ng-hide {
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    .alert-top-wrapper * {
+        pointer-events: auto;
+        pointer-events: initial;
+        text-align: left;
+        text-align: initial;
+    }
+
+    .alert-top-wrapper .alert {
+        display: inline-block;
+        min-width: 400px;
+        margin-bottom: 0;
+    }
+
+@media (max-width: 767px) {
+    .alert-top-wrapper .alert {
+        min-width: 80%;
+    }
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+a.btn-action {
+    display: block;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+    a.btn-action:link, a.btn-action:focus, a.btn-action:hover, a.btn-action:visited {
+        text-decoration: none;
+    }
+
+    a.btn-action.btn-action-margin5 {
+        margin: 5px;
+    }
+
+    a.btn-action.icon-plus, a.btn-action.icon-plus-sign, a.btn-action.icon-plus-sign-alt {
+        color: #5cb85c;
+    }
+
+    a.btn-action.icon-remove, a.btn-action.icon-remove-sign, a.btn-action.icon-remove-circle,
+    a.btn-action.icon-minus, a.btn-action.icon-minus-sign, a.btn-action.icon-minus-sign-alt {
+        color: #d00000;
+    }
+
+.bootstrap-switch.bootstrap-switch-on {
+    border-color: #428BCA;
+}
+
+.bootstrap-switch.bootstrap-switch-focused {
+    border-color: #66AFE9;
+}
+
+.field-validation-valid {
+    color: red;
+}
+
+.table-overflow-x-container {
+    overflow-x: scroll;
+}
+
+    .table-overflow-x-container table {
+        width: auto;
+    }
+
+td.datetime-cell {
+    width: 200px;
+}
+
+td.date-cell {
+    width: 160px;
+}
+
+td.int {
+    width: 80px;
+}
+
+td.float {
+    width: 80px;
+}

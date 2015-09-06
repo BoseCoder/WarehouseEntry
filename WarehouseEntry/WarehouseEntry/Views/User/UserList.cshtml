@@ -1,0 +1,67 @@
+﻿@using Resources
+@model IEnumerable<WarehouseEntry.Business.Models.BusinessUserModel>
+<div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enabled)
+            </th>
+            <th>@SiteCommonResource.ActionColumnTitle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationTime)
+                </td>
+                <td>
+                    <div class="bootstrap-switch bootstrap-switch-small">
+                        @if (item.Enabled)
+                        {
+                            <input type="checkbox" checked />
+                        }
+                        else
+                        {
+                            <input type="checkbox" />
+                        }
+                    </div>
+                </td>
+                <td>
+                    <a class="btn-action icon-minus-sign btn-delete-user" title="@SiteCommonResource.ActionDeleteToolTip" href="javascript:void(0);"></a>
+                </td>
+            </tr>
+        }
+        <tr id="rowUserAction">
+            <td>
+                <input id="txtUserName" type="text" class="form-control" />
+            </td>
+            <td>
+                <input id="txtDisplayName" type="text" class="form-control" />
+            </td>
+            <td>--</td>
+            <td>
+                <div class="bootstrap-switch bootstrap-switch-small">
+                    <input id="cboxUserEnabled" type="checkbox" checked />
+                </div>
+            </td>
+            <td>
+                <a id="lbtnAddUser" class="btn-action icon-plus-sign" title="@SiteCommonResource.ActionCreateToolTip" href="javascript:void(0);"></a>
+            </td>
+        </tr>
+    </table>
+</div>

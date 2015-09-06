@@ -1,0 +1,90 @@
+﻿@using Resources
+@model WarehouseEntry.Models.ViewHomeIndexModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section DynamicHeader{
+
+    <style type="text/css">
+        #main-container {
+            min-height: 450px;
+        }
+
+        .task-handler-container {
+            display: none;
+        }
+
+        .icon-linker {
+            display: block;
+            width: 575px;
+            height: 275px;
+            color: white;
+        }
+
+            .icon-linker:hover {
+                color: white;
+            }
+
+            .icon-linker .icon-linker-text {
+                text-align: left;
+                line-height: 32px;
+                font-size: 24px;
+                display: block;
+                margin-left: 300px;
+                padding: 25px;
+            }
+
+            .icon-linker .icon-linker-title {
+                text-align: left;
+                line-height: 32px;
+                font-size: 16px;
+                display: block;
+                margin-left: 300px;
+                padding: 25px;
+            }
+    </style>
+
+}
+
+<div id="main-container" class="container">
+    @if (Model.CanCreateEntry || Model.CanBatchCreateEntry)
+    {
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <h1>@SiteCommonResource.TextSystemMainOffice</h1>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.CanCreateEntry)
+            {
+                <div class="col-xs-6 col-md-6">
+                    <a class="icon-linker" style='background: url(@Url.Content("~/Content/Images/Cart.png"))' href='@Url.Action("CreateEntry", "Entry")'>
+                        <span class="icon-linker-text">@FunctionResource.EntryControllerCreateEntry</span>
+                        <span class="icon-linker-title">@SiteCommonResource.ToolTipCreateEntry</span>
+                    </a>
+                </div>
+            }
+            @if (Model.CanBatchCreateEntry)
+            {
+            
+                <div class="col-xs-6 col-md-6">
+                    <a class="icon-linker" style='background: url(@Url.Content("~/Content/Images/Truck.png"))' href='@Url.Action("BatchCreateEntry", "Entry")'>
+                        <span class="icon-linker-text">@FunctionResource.EntryControllerBatchCreateEntry</span>
+                        <span class="icon-linker-title">@SiteCommonResource.ToolTipBatchCreateEntry</span>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h1>@SiteCommonResource.TextMyReadyTask</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            @Html.Partial("~/Views/Task/TaskList.cshtml", Model.DataModel)
+        </div>
+    </div>
+</div>

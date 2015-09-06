@@ -1,0 +1,202 @@
+﻿@using Resources
+@using WarehouseEntry.Models
+@model IViewBaseModel
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href='@Url.Content("~/Icon.ico")' type="image/x-icon" />
+    @Styles.Render("~/Content/CssCore/Bootstrap")
+    @Styles.Render("~/Content/CssPlus/BootstrapPlus")
+
+    @Scripts.Render("~/bundles/scriptcore")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/plus")
+    @Scripts.Render("~/bundles/custom")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style type="text/css">
+        body {
+            padding-bottom: 0;
+        }
+        .logo-bar {
+             background: url(@Url.Content("~/Content/Images/LogoBarBackground.png")) no-repeat;
+        }
+        .logo-bar .logo {
+            height: 300px;
+            background: url(@Url.Content("~/Content/Images/LogoBar.png")) no-repeat;
+        }
+        .user-info-container {
+            position: relative;
+        }
+        .user-info-container > div {
+            position: absolute;
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            top: -36px;
+            text-align: right;
+            font-size: 28px;
+            color: white;
+        }
+        .user-info-container > div > div {
+            padding-right: 64px;
+        }
+        .user-info-container > div > div a {
+            color: white;
+        }
+        .copyright-bar {
+            height: 54px;
+            line-height: 54px;
+            font-size: 18px;
+            color: #B0B0B0;
+            text-align: center;
+            margin-top: 40px;
+            background: url(@Url.Content("~/Content/Images/CopyRightBackground.png")) repeat-x;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.navbar-wrapper').stickUp();
+        });
+
+    </script>
+    @RenderSection("DynamicHeader", false)
+</head>
+<body>
+
+    <div ng-show="alertShown" class="alert-top-wrapper ng-hide">
+        <div class="alert alert-dismissable" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]" role="alert" alert="" type="workaround" style="display: inline-block;">
+            <div ng-transclude="">
+                <span class="icon"></span>
+                <span class="message-container"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid logo-bar">
+        <div class="container logo"></div>
+        <div class="container user-info-container">
+            <div>
+                <div>
+                    @if (Model.IsLogin)
+                    {
+                        <a href="javascript:void(0)" title="@Model.LoginUserInfo">@Model.LoginUserInfo</a>
+                        <a href='@Url.Action("SignIn", "User")' title="@SiteCommonResource.TextSignOut">@SiteCommonResource.TextSignOut</a>
+                    }
+                    else
+                    {
+                        <a href='@Url.Action("SignIn", "User")' title="@SiteCommonResource.TextSignIn">@SiteCommonResource.TextSignIn</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <div class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            @foreach (SiteMenuModel menu in Model.VisiabledRootMenus)
+                            {
+                                if (menu.IsAction)
+                                {
+                                <li class='@(Model.ContainSiteMenuCurrentNode(menu) ? "active" : string.Empty)'>
+                                    <a class="@menu.CssClass" href="@Url.Content(menu.Url)">@ViewBaseModel.GetFunctionText(menu.Text)</a>
+                                </li>
+                                    }
+                                    else if (menu.VisiabledSubMenus != null && menu.VisiabledSubMenus.Count > 0)
+                                    {
+                                <li class="dropdown @(Model.ContainSiteMenuCurrentNode(menu) ? "active" : string.Empty)">
+                                    <a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle @menu.CssClass"
+                                                   role="button" aria-expanded="false">@ViewBaseModel.GetFunctionText(menu.Text)<strong class="caret"></strong>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @if (menu.VisiabledSubMenus[0].IsAction)
+                                        {
+                                            <li>
+                                                <a class="@menu.VisiabledSubMenus[0].CssClass" href="@Url.Content(menu.VisiabledSubMenus[0].Url)">@ViewBaseModel.GetFunctionText(menu.VisiabledSubMenus[0].Text)</a>
+                                            </li>
+                                            }
+                                        else
+                                        {
+                                            <li>
+                                                <a class="@menu.VisiabledSubMenus[0].CssClass" href="javascript:void(0);">@ViewBaseModel.GetFunctionText(menu.VisiabledSubMenus[0].Text)</a>
+                                            </li>
+                                            }
+                                        @for (int i = 1; i < menu.VisiabledSubMenus.Count; i++)
+                                        {
+                                            <li class="divider"></li>
+                                                if (menu.VisiabledSubMenus[i].IsAction)
+                                                {
+                                            <li>
+                                                <a class="@menu.VisiabledSubMenus[i].CssClass" href="@Url.Content(menu.VisiabledSubMenus[i].Url)">@ViewBaseModel.GetFunctionText(menu.VisiabledSubMenus[i].Text)</a>
+                                            </li>
+                                                }
+                                                else
+                                                {
+                                            <li>
+                                                <a class="@menu.VisiabledSubMenus[i].CssClass" href="javascript:void(0);">@ViewBaseModel.GetFunctionText(menu.VisiabledSubMenus[i].Text)</a>
+                                            </li>
+                                                }
+                                            }
+                                    </ul>
+                                </li>
+                                    }
+                                    else
+                                    {
+                                <li class='@(Model.ContainSiteMenuCurrentNode(menu) ? "active" : string.Empty)'>
+                                    <a class="@menu.CssClass" href="javascript:void(0);">@ViewBaseModel.GetFunctionText(menu.Text)</a>
+                                </li>
+                                    }
+                                }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.BreadCrumbCurrentNode != null)
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <ul class="breadcrumb">
+                        @foreach (SiteMenuModel breadCrumbNode in Model.BreadCrumb)
+                        {
+                            <li>
+                                <a class="@breadCrumbNode.CssClass" href="@Url.Content(@breadCrumbNode.Url)">@ViewBaseModel.GetFunctionText(breadCrumbNode.Text)</a>
+                                <span class="divider"></span>
+                            </li>
+                        }
+                        <li class="active">
+                            <span class="@Model.BreadCrumbCurrentNode.CssClass">
+                                @ViewBaseModel.GetFunctionText(Model.BreadCrumbCurrentNode.Text)
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+
+    @RenderBody()
+
+    @RenderSection("DynamicFooter", false)
+
+    <div class="container-fluid copyright-bar">
+        <div class="container">
+            @SiteCommonResource.TextCopyright
+        </div>
+    </div>
+</body>
+</html>

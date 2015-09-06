@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionColumnTitle" xml:space="preserve">
+    <value>管理</value>
+    <comment>管理</comment>
+  </data>
+  <data name="ActionCreateToolTip" xml:space="preserve">
+    <value>新建！</value>
+    <comment>新建！</comment>
+  </data>
+  <data name="ActionDeleteToolTip" xml:space="preserve">
+    <value>删除！</value>
+    <comment>删除！</comment>
+  </data>
+  <data name="AlertErrorPasswordNotConfirm" xml:space="preserve">
+    <value>两次密码输入不一致！</value>
+    <comment>两次密码输入不一致！</comment>
+  </data>
+  <data name="AlertInfoTitle" xml:space="preserve">
+    <value>注意！</value>
+    <comment>注意！</comment>
+  </data>
+  <data name="AlertWarningHasUser" xml:space="preserve">
+    <value>当创建或者启用有效账户后，管理员账户将被禁用！</value>
+    <comment>当创建或者启用有效账户后，管理员账户将被禁用！</comment>
+  </data>
+  <data name="AlertWarningNoUser" xml:space="preserve">
+    <value>请使用管理员账户账户登陆并创建或者启用一个有效账户！</value>
+    <comment>请使用管理员账户账户登陆并创建或者启用一个有效账户！</comment>
+  </data>
+  <data name="AlertWarningTitle" xml:space="preserve">
+    <value>警告！</value>
+    <comment>警告！</comment>
+  </data>
+  <data name="AlertWarningUnSignIn" xml:space="preserve">
+    <value>请先登录！</value>
+    <comment>请先登录！</comment>
+  </data>
+  <data name="MessageChangePasswordSuccessfully" xml:space="preserve">
+    <value>修改密码成功！</value>
+    <comment>修改密码成功！</comment>
+  </data>
+  <data name="MessageCreateRoleSuccessfully" xml:space="preserve">
+    <value>创建角色成功！</value>
+    <comment>创建角色成功！</comment>
+  </data>
+  <data name="MessageCreateUserSuccessfully" xml:space="preserve">
+    <value>创建用户成功！</value>
+    <comment>创建用户成功！</comment>
+  </data>
+  <data name="MessageDefaultPassword" xml:space="preserve">
+    <value>用户的默认密码是：123456</value>
+    <comment>用户的默认密码是：123456</comment>
+  </data>
+  <data name="MessageDeleteRoleSuccessfully" xml:space="preserve">
+    <value>删除角色成功！</value>
+    <comment>删除角色成功！</comment>
+  </data>
+  <data name="MessageDisableRoleSuccessfully" xml:space="preserve">
+    <value>禁用角色成功！</value>
+    <comment>禁用角色成功！</comment>
+  </data>
+  <data name="MessageDisableUserSuccessfully" xml:space="preserve">
+    <value>禁用用户成功！</value>
+    <comment>禁用用户成功！</comment>
+  </data>
+  <data name="MessageEnableRoleSuccessfully" xml:space="preserve">
+    <value>启用角色成功！</value>
+    <comment>启用角色成功！</comment>
+  </data>
+  <data name="MessageEnableUserSuccessfully" xml:space="preserve">
+    <value>启用用户成功！</value>
+    <comment>启用用户成功！</comment>
+  </data>
+  <data name="MessageLoginSucessfully" xml:space="preserve">
+    <value>登录成功！</value>
+    <comment>登录成功！</comment>
+  </data>
+  <data name="MessageOperateSuccessfully" xml:space="preserve">
+    <value>操作成功！</value>
+    <comment>操作成功！</comment>
+  </data>
+  <data name="MessageRoleDeleted" xml:space="preserve">
+    <value>角色已经被删除！</value>
+    <comment>角色已经被删除！</comment>
+  </data>
+  <data name="MessageSaveRightSuccessfully" xml:space="preserve">
+    <value>保存权限成功！</value>
+    <comment>保存权限成功！</comment>
+  </data>
+  <data name="TextAggregate" xml:space="preserve">
+    <value>累计：</value>
+    <comment>累计：</comment>
+  </data>
+  <data name="TextAll" xml:space="preserve">
+    <value>所有</value>
+    <comment>所有</comment>
+  </data>
+  <data name="TextChange" xml:space="preserve">
+    <value>修改</value>
+    <comment>修改</comment>
+  </data>
+  <data name="TextComplete" xml:space="preserve">
+    <value>完工</value>
+    <comment>完工</comment>
+  </data>
+  <data name="TextCompleted" xml:space="preserve">
+    <value>已完工</value>
+    <comment>已完工</comment>
+  </data>
+  <data name="TextCompletedOnly" xml:space="preserve">
+    <value>仅已完工</value>
+    <comment>仅已完工</comment>
+  </data>
+  <data name="TextCopyright" xml:space="preserve">
+    <value>Copyright © 2015-2016 中国石油宝鸡石油机械有限责任公司 版权所有</value>
+    <comment>Copyright © 2015-2016 中国石油宝鸡石油机械有限责任公司 版权所有</comment>
+  </data>
+  <data name="TextCreate" xml:space="preserve">
+    <value>创建</value>
+    <comment>创建</comment>
+  </data>
+  <data name="TextEndDate" xml:space="preserve">
+    <value>结束日期</value>
+    <comment>结束日期</comment>
+  </data>
+  <data name="TextFormatUserInfo" xml:space="preserve">
+    <value>欢迎，{0} （{1}）！</value>
+    <comment>欢迎，{0} （{1}）！</comment>
+  </data>
+  <data name="TextMyReadyTask" xml:space="preserve">
+    <value>我的任务</value>
+    <comment>我的任务</comment>
+  </data>
+  <data name="TextNextMonth" xml:space="preserve">
+    <value>下个月</value>
+    <comment>下个月</comment>
+  </data>
+  <data name="TextNoAccess" xml:space="preserve">
+    <value>对不起，权限不足！</value>
+    <comment>对不起，权限不足！</comment>
+  </data>
+  <data name="TextPasswordConfirm" xml:space="preserve">
+    <value>确认密码</value>
+    <comment>确认密码</comment>
+  </data>
+  <data name="TextPreviousMonth" xml:space="preserve">
+    <value>上个月</value>
+    <comment>上个月</comment>
+  </data>
+  <data name="TextReject" xml:space="preserve">
+    <value>驳回</value>
+    <comment>驳回</comment>
+  </data>
+  <data name="TextRoleList" xml:space="preserve">
+    <value>角色列表</value>
+    <comment>角色列表</comment>
+  </data>
+  <data name="TextSave" xml:space="preserve">
+    <value>保存</value>
+    <comment>保存</comment>
+  </data>
+  <data name="TextSearch" xml:space="preserve">
+    <value>查询</value>
+    <comment>查询</comment>
+  </data>
+  <data name="TextSignIn" xml:space="preserve">
+    <value>登录</value>
+    <comment>登录</comment>
+  </data>
+  <data name="TextSignOut" xml:space="preserve">
+    <value>注销</value>
+    <comment>注销</comment>
+  </data>
+  <data name="TextStartDate" xml:space="preserve">
+    <value>开始日期</value>
+    <comment>开始日期</comment>
+  </data>
+  <data name="TextSystemMainOffice" xml:space="preserve">
+    <value>系统常用功能</value>
+    <comment>系统常用功能</comment>
+  </data>
+  <data name="TextUncompleted" xml:space="preserve">
+    <value>未完工</value>
+    <comment>未完工</comment>
+  </data>
+  <data name="TextUpdate" xml:space="preserve">
+    <value>更新</value>
+    <comment>更新</comment>
+  </data>
+  <data name="ToolTipBatchCreateEntry" xml:space="preserve">
+    <value>点击这里开始批量处理入库记录，支持文件导入。</value>
+    <comment>点击这里开始批量处理入库记录，支持文件导入。</comment>
+  </data>
+  <data name="ToolTipCreateEntry" xml:space="preserve">
+    <value>点击这里开始创建一条新的入库记录。</value>
+    <comment>点击这里开始创建一条新的入库记录。</comment>
+  </data>
+  <data name="ViewTitleEntryControllerBatchCompleteEntry" xml:space="preserve">
+    <value>批量完工</value>
+    <comment>批量完工</comment>
+  </data>
+  <data name="ViewTitleEntryControllerBatchCreateEntry" xml:space="preserve">
+    <value>批量创建</value>
+    <comment>批量创建</comment>
+  </data>
+  <data name="ViewTitleEntryControllerBatchEditEntry" xml:space="preserve">
+    <value>批量编辑</value>
+    <comment>批量编辑</comment>
+  </data>
+  <data name="ViewTitleEntryControllerCompleteEntry" xml:space="preserve">
+    <value>入库完工</value>
+    <comment>入库完工</comment>
+  </data>
+  <data name="ViewTitleEntryControllerCreateEntry" xml:space="preserve">
+    <value>新增入库记录</value>
+    <comment>新增入库记录</comment>
+  </data>
+  <data name="ViewTitleEntryControllerEditEntry" xml:space="preserve">
+    <value>编辑入库记录</value>
+    <comment>编辑入库记录</comment>
+  </data>
+  <data name="ViewTitleHomeControllerIndex" xml:space="preserve">
+    <value>欢迎 -- 首页</value>
+    <comment>欢迎 -- 首页</comment>
+  </data>
+  <data name="ViewTitleHomeControllerNoAccess" xml:space="preserve">
+    <value>出错了</value>
+    <comment>出错了</comment>
+  </data>
+  <data name="ViewTitleReportControllerProductReport" xml:space="preserve">
+    <value>入库产品报表</value>
+    <comment>入库产品报表</comment>
+  </data>
+  <data name="ViewTitleReportControllerWeightReport" xml:space="preserve">
+    <value>入库重量报表</value>
+    <comment>入库重量报表</comment>
+  </data>
+  <data name="ViewTitleUserControllerChangePassword" xml:space="preserve">
+    <value>修改密码</value>
+    <comment>修改密码</comment>
+  </data>
+  <data name="ViewTitleUserControllerRightIndex" xml:space="preserve">
+    <value>权限管理</value>
+    <comment>权限管理</comment>
+  </data>
+  <data name="ViewTitleUserControllerSignIn" xml:space="preserve">
+    <value>登录</value>
+    <comment>登录</comment>
+  </data>
+  <data name="ViewTitleUserControllerUserIndex" xml:space="preserve">
+    <value>用户管理</value>
+    <comment>用户管理</comment>
+  </data>
+</root>
